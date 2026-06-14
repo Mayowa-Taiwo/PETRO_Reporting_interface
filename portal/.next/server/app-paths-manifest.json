@@ -1,0 +1,18 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/edip/[...path]/route": "app/api/edip/[...path]/route.js",
+  "/api/governance/[...path]/route": "app/api/governance/[...path]/route.js",
+  "/page": "app/page.js",
+  "/platform/page": "app/platform/page.js",
+  "/edip/compliance/page": "app/edip/compliance/page.js",
+  "/edip/data-products/page": "app/edip/data-products/page.js",
+  "/edip/governance/page": "app/edip/governance/page.js",
+  "/edip/executive/page": "app/edip/executive/page.js",
+  "/edip/login/page": "app/edip/login/page.js",
+  "/edip/page": "app/edip/page.js",
+  "/edip/reporting/page": "app/edip/reporting/page.js",
+  "/edip/production/[pdenId]/page": "app/edip/production/[pdenId]/page.js",
+  "/edip/production/page": "app/edip/production/page.js",
+  "/edip/platform-services/page": "app/edip/platform-services/page.js",
+  "/edip/trd/page": "app/edip/trd/page.js"
+}

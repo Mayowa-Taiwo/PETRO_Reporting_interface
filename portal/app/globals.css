@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Fallbacks before ThemeProvider / layout injects resolved variables */
+:root {
+  --bhalo-footer-bg: #020617;
+  --bhalo-footer-text: #64748b;
+  --bhalo-footer-link: #94a3b8;
+  --bhalo-footer-link-hover: #e2e8f0;
+
+  --tanna-shell-platform-bg: #020617;
+  --tanna-shell-platform-text: #f1f5f9;
+  --tanna-shell-header: #0f172a;
+  --tanna-shell-header-border: #334155;
+  --tanna-shell-workspace-bg: #f8fafc;
+  --tanna-shell-workspace-text: #0f172a;
+  --tanna-shell-panel-bg: #ffffff;
+  --tanna-shell-panel-border: #e2e8f0;
+
+  --tanna-nav-breadcrumb: #94a3b8;
+  --tanna-nav-breadcrumb-hover: #ffffff;
+  --tanna-nav-separator: #475569;
+  --tanna-nav-link: #cbd5e1;
+  --tanna-nav-link-hover: #ffffff;
+  --tanna-nav-active: #34d399;
+  --tanna-nav-active-weight: 500;
+
+  --tanna-accent-primary: #059669;
+  --tanna-accent-primary-hover: #10b981;
+  --tanna-accent-primary-fg: #ffffff;
+  --tanna-accent-card-hover-border: #059669;
+
+  --tanna-semantic-link: #2563eb;
+  --tanna-semantic-muted: #64748b;
+
+  --tanna-chart-series-primary: #0d9488;
+
+  --tanna-product-slug: petro-reporting;
+  --tanna-theme-family: ldv;
+}

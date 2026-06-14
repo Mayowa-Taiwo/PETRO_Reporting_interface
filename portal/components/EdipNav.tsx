@@ -3,19 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTannaProduct } from "@/context/TannaProductContext";
 import { getToken, removeToken } from "@/lib/api";
-
-const NAV = [
-  { href: "/edip", label: "Overview", exact: true },
-  { href: "/edip/executive", label: "Executive" },
-  { href: "/edip/production", label: "Production" },
-  { href: "/edip/reporting", label: "Reporting" },
-  { href: "/edip/governance", label: "Governance" },
-  { href: "/edip/trd", label: "TRD Warehouse" },
-  { href: "/edip/compliance", label: "Compliance" },
-  { href: "/edip/data-products", label: "Data Products" },
-  { href: "/edip/platform-services", label: "Platform Services" },
-];
 
 function isActive(pathname: string, href: string, exact?: boolean) {
   if (exact) return pathname === href;
@@ -25,28 +14,34 @@ function isActive(pathname: string, href: string, exact?: boolean) {
 export default function EdipNav() {
   const pathname = usePathname();
   const [hasToken, setHasToken] = useState(false);
+  const { config, theme } = useTannaProduct();
+
+  const navItems = config.navigationItems.filter((item) => item.visible !== false);
 
   useEffect(() => {
     setHasToken(!!getToken());
   }, [pathname]);
 
   return (
-    <header className="border-b border-slate-700 bg-slate-900 text-white">
+    <header className={theme.moduleHeaderClassName}>
       <div className="px-4 py-3 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-4">
-          <Link href="/" className="text-sm text-slate-400 hover:text-white">
-            PETRO
+          <Link
+            href="/"
+            className="text-sm text-tanna-nav-breadcrumb hover:text-tanna-nav-breadcrumb-hover"
+          >
+            {config.shortName}
           </Link>
-          <span className="text-slate-600">/</span>
+          <span className="text-tanna-nav-separator">/</span>
           <Link href="/edip" className="font-bold text-lg">
-            EDIP Workspace
+            {config.workspaceName}
           </Link>
         </div>
         <div className="flex items-center gap-3 text-sm">
           {hasToken ? (
             <button
               type="button"
-              className="text-slate-300 hover:text-white"
+              className="text-tanna-nav-link hover:text-tanna-nav-link-hover"
               onClick={() => {
                 removeToken();
                 setHasToken(false);
@@ -55,21 +50,24 @@ export default function EdipNav() {
               Sign out
             </button>
           ) : (
-            <Link href="/edip/login" className="text-slate-300 hover:text-white">
+            <Link
+              href="/edip/login"
+              className="text-tanna-nav-link hover:text-tanna-nav-link-hover"
+            >
               Sign in
             </Link>
           )}
         </div>
       </div>
       <nav className="px-4 pb-2 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-        {NAV.map((item) => (
+        {navItems.map((item) => (
           <Link
-            key={item.href}
+            key={`${item.href}-${item.label}`}
             href={item.href}
             className={
               isActive(pathname, item.href, item.exact)
-                ? "text-emerald-400 font-medium"
-                : "text-slate-300 hover:text-white"
+                ? "text-tanna-nav-active font-medium"
+                : "text-tanna-nav-link hover:text-tanna-nav-link-hover"
             }
           >
             {item.label}
