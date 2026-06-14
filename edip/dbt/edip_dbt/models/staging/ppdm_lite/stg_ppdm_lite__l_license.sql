@@ -1,0 +1,25 @@
+-- Staging for ppdm_lite.l_license (generated)
+select
+    license_id,
+    license_table,
+    data_source,
+    effective_date,
+    expiry_date,
+    facility_id,
+    facility_type,
+    granted_by_ba_id,
+    granted_date,
+    granted_to_ba_id,
+    license_ba_id,
+    license_num,
+    license_status,
+    license_term,
+    license_type,
+    ppdm_guid,
+    remark,
+    secondary_term,
+    seis_set_id,
+    seis_set_type,
+    uwi,
+    well_license_source
+from {{ source('ppdm_lite', 'l_license') }}

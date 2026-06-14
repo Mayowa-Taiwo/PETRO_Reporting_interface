@@ -1,0 +1,1466 @@
+version: 2
+
+sources:
+  - name: ppdm_lite
+    schema: ppdm_lite
+    description: PPDM Lite 1.1 integration layer (Silver), publish-only
+    tables:
+      - name: l_application
+        description: PPDM Lite table l_application
+        columns:
+          - name: application_id
+          - name: application_type
+          - name: data_source
+          - name: decision
+          - name: ppdm_guid
+          - name: received_date
+          - name: remark
+          - name: resubmission_ind
+          - name: submitted_date
+
+      - name: l_area
+        description: PPDM Lite table l_area
+        columns:
+          - name: area_id
+          - name: area_type
+          - name: data_source
+          - name: ppdm_guid
+          - name: preferred_name
+          - name: remark
+
+      - name: l_area_alias
+        description: PPDM Lite table l_area_alias
+        columns:
+          - name: area_id
+          - name: area_type
+          - name: area_alias_id
+          - name: alias_owner_ba_id
+          - name: alias_type
+          - name: area_full_name
+          - name: data_source
+          - name: ppdm_guid
+          - name: preferred_ind
+          - name: remark
+
+      - name: l_ba_address
+        description: PPDM Lite table l_ba_address
+        columns:
+          - name: business_associate
+          - name: source
+          - name: address_obs_no
+          - name: address_type
+          - name: city_id
+          - name: country
+          - name: data_source
+          - name: email_address
+          - name: fax_num
+          - name: first_address_line
+          - name: phone_num
+          - name: postal_zip_code
+          - name: ppdm_guid
+          - name: province_state
+          - name: remark
+          - name: second_address_line
+          - name: third_address_line
+          - name: web_url
+
+      - name: l_ba_alias
+        description: PPDM Lite table l_ba_alias
+        columns:
+          - name: business_associate
+          - name: source
+          - name: ba_alias_id
+          - name: alias_name
+          - name: alias_type
+          - name: data_source
+          - name: ppdm_guid
+          - name: preferred_ind
+          - name: remark
+
+      - name: l_business_associate
+        description: PPDM Lite table l_business_associate
+        columns:
+          - name: business_associate
+          - name: ba_category
+          - name: ba_code
+          - name: ba_name
+          - name: ba_type
+          - name: current_status
+          - name: data_source
+          - name: effective_date
+          - name: first_name
+          - name: last_name
+          - name: middle_initial
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_cont_alias
+        description: PPDM Lite table l_cont_alias
+        columns:
+          - name: contract_id
+          - name: alias_id
+          - name: alias_name
+          - name: alias_owner
+          - name: alias_type
+          - name: data_source
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_cont_extension
+        description: PPDM Lite table l_cont_extension
+        columns:
+          - name: contract_id
+          - name: extension_id
+          - name: data_source
+          - name: extension_type
+          - name: issued_by
+          - name: issued_date
+          - name: land_right_id
+          - name: land_right_type
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_contract
+        description: PPDM Lite table l_contract
+        columns:
+          - name: contract_id
+          - name: confidential_ind
+          - name: contract_name
+          - name: contract_num
+          - name: contract_type
+          - name: current_operator
+          - name: current_status
+          - name: current_status_date
+          - name: data_source
+          - name: dev_penalty_percent
+          - name: equip_penalty_percent
+          - name: expiry_date
+          - name: expl_penalty_percent
+          - name: mktg_fee_elect_percent
+          - name: operating_procedure_type
+          - name: ppdm_guid
+          - name: remark
+          - name: rofr_ind
+          - name: termination_date
+
+      - name: l_contract_component
+        description: PPDM Lite table l_contract_component
+        columns:
+          - name: contract_id
+          - name: component_id
+          - name: application_id
+          - name: area_id
+          - name: area_type
+          - name: business_associate
+          - name: data_source
+          - name: facility_id
+          - name: facility_type
+          - name: field_id
+          - name: information_item_id
+          - name: info_item_type
+          - name: jurisdiction
+          - name: land_right_id
+          - name: land_right_type
+          - name: land_sale_number
+          - name: land_sale_offering_id
+          - name: pden_id
+          - name: pden_source
+          - name: pden_type
+          - name: ppdm_guid
+          - name: reason_type
+          - name: remark
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: support_facility_id
+          - name: support_facility_type
+          - name: uwi
+
+      - name: l_cs_coordinate_system
+        description: PPDM Lite table l_cs_coordinate_system
+        columns:
+          - name: coord_system_id
+          - name: coordinate_system_type
+          - name: coord_system_from_uom
+          - name: coord_system_name
+          - name: coord_system_to_uom
+          - name: data_source
+          - name: ellipsoid_id
+          - name: ellipsoid_inverse_flattening
+          - name: ellipsoid_name
+          - name: ellipsoid_semi_major_axis
+          - name: factor_denominator
+          - name: factor_numerator
+          - name: geodetic_datum
+          - name: geodetic_datum_name
+          - name: greenwich_longitude
+          - name: ppdm_guid
+          - name: prime_meridian_id
+          - name: prime_meridian_name
+          - name: remark
+
+      - name: l_ent_component
+        description: PPDM Lite table l_ent_component
+        columns:
+          - name: entitlement_id
+          - name: component_id
+          - name: area_id
+          - name: area_type
+          - name: business_associate
+          - name: contract_id
+          - name: data_source
+          - name: description
+          - name: ent_comp_type
+          - name: ent_rule
+          - name: facility_id
+          - name: facility_type
+          - name: field_id
+          - name: information_item_id
+          - name: info_item_type
+          - name: interest_set_id
+          - name: land_right_id
+          - name: land_right_type
+          - name: pden_id
+          - name: pden_source
+          - name: pden_type
+          - name: ppdm_guid
+          - name: resent_id
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: uwi
+
+      - name: l_ent_group
+        description: PPDM Lite table l_ent_group
+        columns:
+          - name: entitlement_id
+          - name: security_group_id
+          - name: access_type
+          - name: data_source
+          - name: effective_date
+          - name: ppdm_guid
+          - name: restriction_desc
+
+      - name: l_entitlement
+        description: PPDM Lite table l_entitlement
+        columns:
+          - name: entitlement_id
+          - name: data_source
+          - name: entitlement_type
+          - name: expiry_action
+          - name: expiry_date
+          - name: ppdm_guid
+          - name: primary_term
+          - name: primary_term_uom
+          - name: remark
+
+      - name: l_facility
+        description: PPDM Lite table l_facility
+        columns:
+          - name: facility_id
+          - name: facility_type
+          - name: current_operator
+          - name: data_source
+          - name: facility_function
+          - name: facility_name
+          - name: facility_status
+          - name: facility_status_type
+          - name: h2s_ind
+          - name: last_production_date
+          - name: on_production_date
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_facility_alias
+        description: PPDM Lite table l_facility_alias
+        columns:
+          - name: facility_id
+          - name: facility_type
+          - name: facility_alias_id
+          - name: source
+          - name: alias_owner_ba_id
+          - name: alias_type
+          - name: data_source
+          - name: facility_alias
+          - name: ppdm_guid
+          - name: preferred_ind
+          - name: remark
+
+      - name: l_facility_substance
+        description: PPDM Lite table l_facility_substance
+        columns:
+          - name: facility_id
+          - name: facility_type
+          - name: substance_id
+          - name: average_capacity
+          - name: capacity_uom
+          - name: data_source
+          - name: max_capacity
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_facility_xref
+        description: PPDM Lite table l_facility_xref
+        columns:
+          - name: facility_id
+          - name: facility_type
+          - name: facility_id_2
+          - name: facility_type_2
+          - name: xref_obs_no
+          - name: data_source
+          - name: facility_xref_type
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_field
+        description: PPDM Lite table l_field
+        columns:
+          - name: field_id
+          - name: country
+          - name: data_source
+          - name: discovery_date
+          - name: field_name
+          - name: field_type
+          - name: group_field_id
+          - name: ppdm_guid
+          - name: province_state
+          - name: remark
+
+      - name: l_field_alias
+        description: PPDM Lite table l_field_alias
+        columns:
+          - name: field_id
+          - name: field_alias_id
+          - name: source
+          - name: alias_owner_ba_id
+          - name: alias_type
+          - name: data_source
+          - name: field_alias
+          - name: ppdm_guid
+          - name: preferred_ind
+          - name: remark
+
+      - name: l_fin_component
+        description: PPDM Lite table l_fin_component
+        columns:
+          - name: finance_id
+          - name: finance_component_id
+          - name: application_id
+          - name: area_id
+          - name: area_type
+          - name: business_associate
+          - name: data_source
+          - name: facility_id
+          - name: facility_type
+          - name: field_id
+          - name: information_item_id
+          - name: info_item_type
+          - name: interest_set_id
+          - name: land_right_id
+          - name: land_right_type
+          - name: land_sale_jurisdiction
+          - name: land_sale_number
+          - name: land_sale_offering_id
+          - name: license_id
+          - name: license_table
+          - name: pool_id
+          - name: ppdm_guid
+          - name: remark
+          - name: resent_id
+          - name: reserve_class_id
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: support_facility_id
+          - name: support_facility_type
+          - name: uwi
+
+      - name: l_fin_cost_summary
+        description: PPDM Lite table l_fin_cost_summary
+        columns:
+          - name: cost_id
+          - name: cost_amount
+          - name: cost_type
+          - name: data_source
+          - name: finance_component_id
+          - name: finance_id
+          - name: paid_date
+          - name: parent_cost_id
+          - name: ppdm_guid
+          - name: remark
+          - name: submit_date
+
+      - name: l_fin_xref
+        description: PPDM Lite table l_fin_xref
+        columns:
+          - name: finance_id1
+          - name: finance_id2
+          - name: data_source
+          - name: distribution_percent
+          - name: fin_xref_type
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_finance
+        description: PPDM Lite table l_finance
+        columns:
+          - name: finance_id
+          - name: actual_cost
+          - name: authorized_by_ba_id
+          - name: budget_cost
+          - name: data_source
+          - name: finance_type
+          - name: fin_status
+          - name: issue_date
+          - name: limit_amount
+          - name: ppdm_guid
+          - name: reference_number
+          - name: remark
+          - name: tax_credit_code
+
+      - name: l_int_set_component
+        description: PPDM Lite table l_int_set_component
+        columns:
+          - name: interest_set_id
+          - name: business_associate
+          - name: component_type
+          - name: contract_id
+          - name: data_source
+          - name: facility_id
+          - name: facility_type
+          - name: information_item_id
+          - name: info_item_type
+          - name: jurisdiction
+          - name: land_offering_bid
+          - name: land_right_id
+          - name: land_right_type
+          - name: land_sale_number
+          - name: pden_id
+          - name: pden_source
+          - name: pden_type
+          - name: ppdm_guid
+          - name: remark
+          - name: resent_id
+          - name: reserve_class_id
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: sf_type
+          - name: support_facility_id
+          - name: uwi
+
+      - name: l_int_set_partner
+        description: PPDM Lite table l_int_set_partner
+        columns:
+          - name: interest_set_id
+          - name: partner_ba_id
+          - name: data_source
+          - name: gross_fract_interest
+          - name: gross_percent_interest
+          - name: interest_set_role
+          - name: net_fract_interest
+          - name: net_percent_interest
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_interest_set
+        description: PPDM Lite table l_interest_set
+        columns:
+          - name: interest_set_id
+          - name: data_source
+          - name: effective_date
+          - name: interest_set_type
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_land_alias
+        description: PPDM Lite table l_land_alias
+        columns:
+          - name: land_right_id
+          - name: land_right_type
+          - name: lr_alias_id
+          - name: alias_name
+          - name: alias_owner_ba_id
+          - name: alias_type
+          - name: data_source
+          - name: land_ref_num_type
+          - name: ppdm_guid
+          - name: reason_type
+          - name: remark
+
+      - name: l_land_right
+        description: PPDM Lite table l_land_right
+        columns:
+          - name: land_right_id
+          - name: land_right_type
+          - name: cost_center_num
+          - name: country
+          - name: data_source
+          - name: expiry_date
+          - name: granted_right_type
+          - name: jurisdiction
+          - name: land_acqtn_method
+          - name: land_property_type
+          - name: land_right_category
+          - name: land_sale_number
+          - name: land_sale_offering_id
+          - name: lessor_num
+          - name: lessor_type
+          - name: occupant_name
+          - name: ppdm_guid
+          - name: primary_term
+          - name: primary_term_uom
+          - name: province_state
+          - name: remark
+          - name: rofr_ind
+
+      - name: l_land_sale
+        description: PPDM Lite table l_land_sale
+        columns:
+          - name: jurisdiction
+          - name: land_sale_number
+          - name: close_date
+          - name: data_source
+          - name: land_sale_name
+          - name: open_date
+          - name: ppdm_guid
+          - name: remark
+          - name: sale_date
+
+      - name: l_land_sale_offering
+        description: PPDM Lite table l_land_sale_offering
+        columns:
+          - name: jurisdiction
+          - name: land_sale_number
+          - name: land_sale_offering_id
+          - name: area_id
+          - name: area_type
+          - name: cancel_reason
+          - name: data_source
+          - name: land_offering_status
+          - name: land_offering_type
+          - name: ppdm_guid
+          - name: remark
+          - name: status_date
+
+      - name: l_land_xref
+        description: PPDM Lite table l_land_xref
+        columns:
+          - name: lr_xref_seq_no
+          - name: child_land_right_type
+          - name: child_land_right_id
+          - name: parent_land_right_type
+          - name: parent_land_right_id
+          - name: allocation_percent
+          - name: data_source
+          - name: land_xref_type
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_license
+        description: PPDM Lite table l_license
+        columns:
+          - name: license_id
+          - name: license_table
+          - name: data_source
+          - name: effective_date
+          - name: expiry_date
+          - name: facility_id
+          - name: facility_type
+          - name: granted_by_ba_id
+          - name: granted_date
+          - name: granted_to_ba_id
+          - name: license_ba_id
+          - name: license_num
+          - name: license_status
+          - name: license_term
+          - name: license_type
+          - name: ppdm_guid
+          - name: remark
+          - name: secondary_term
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: uwi
+          - name: well_license_source
+
+      - name: l_pden
+        description: PPDM Lite table l_pden
+        columns:
+          - name: pden_id
+          - name: pden_type
+          - name: source
+          - name: area_id
+          - name: area_type
+          - name: country
+          - name: current_operator
+          - name: current_status_date
+          - name: data_source
+          - name: facility_id
+          - name: facility_type
+          - name: field_id
+          - name: geologic_province
+          - name: last_injection_date
+          - name: last_production_date
+          - name: last_reported_date
+          - name: on_injection_date
+          - name: on_production_date
+          - name: other_name
+          - name: pden_name
+          - name: pool_id
+          - name: ppdm_guid
+          - name: primary_product
+          - name: production_method
+          - name: province_state
+          - name: pr_str_form_obs_no
+          - name: remark
+          - name: resent_id
+          - name: reserve_class_id
+          - name: string_id
+          - name: string_source
+          - name: uwi
+
+      - name: l_pden_strat_unit
+        description: PPDM Lite table l_pden_strat_unit
+        columns:
+          - name: pden_id
+          - name: pden_type
+          - name: pden_source
+          - name: strat_name_set_id
+          - name: strat_unit_id
+          - name: pden_su_obs_no
+          - name: data_source
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_pden_vol_summary
+        description: PPDM Lite table l_pden_vol_summary
+        columns:
+          - name: pden_id
+          - name: pden_type
+          - name: pden_source
+          - name: volume_method
+          - name: activity_type
+          - name: volume_date
+          - name: boe_cum_volume
+          - name: boe_volume_uom
+          - name: co2_cum_volume
+          - name: co2_volume_uom
+          - name: data_source
+          - name: gas_cum_volume
+          - name: gas_volume_uom
+          - name: injection_cum_volume
+          - name: injection_volume_uom
+          - name: ngl_cum_volume
+          - name: ngl_volume_uom
+          - name: nitrogen_cum_volume
+          - name: nitrogen_volume_uom
+          - name: oil_cum_volume
+          - name: oil_volume_uom
+          - name: period_on_injection
+          - name: period_on_injection_uom
+          - name: period_on_production
+          - name: period_on_production_uom
+          - name: ppdm_guid
+          - name: primary_product
+          - name: project_id
+          - name: remark
+          - name: sulphur_cum_volume
+          - name: sulphur_volume_uom
+          - name: water_cum_volume
+          - name: water_volume_uom
+
+      - name: l_pden_xref
+        description: PPDM Lite table l_pden_xref
+        columns:
+          - name: from_pden_id
+          - name: from_pden_type
+          - name: to_pden_id
+          - name: to_pden_type
+          - name: pden_source
+          - name: xref_obs_no
+          - name: data_source
+          - name: pden_xref_type
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_pool
+        description: PPDM Lite table l_pool
+        columns:
+          - name: pool_id
+          - name: business_associate
+          - name: country
+          - name: data_source
+          - name: field_id
+          - name: pool_name
+          - name: pool_status
+          - name: pool_type
+          - name: ppdm_guid
+          - name: province_state
+          - name: remark
+          - name: strat_name_set_id
+          - name: strat_unit_id
+
+      - name: l_pool_alias
+        description: PPDM Lite table l_pool_alias
+        columns:
+          - name: pool_id
+          - name: source
+          - name: pool_alias_id
+          - name: alias_owner_ba_id
+          - name: alias_type
+          - name: data_source
+          - name: pool_alias
+          - name: ppdm_guid
+          - name: preferred_ind
+          - name: remark
+
+      - name: l_ppdm_column
+        description: PPDM Lite table l_ppdm_column
+        columns:
+          - name: table_name
+          - name: column_name
+          - name: column_comment
+          - name: column_sequence
+          - name: data_source
+          - name: data_type
+          - name: ppdm_guid
+          - name: primary_key_sequence
+          - name: remark
+
+      - name: l_ppdm_data_source
+        description: PPDM Lite table l_ppdm_data_source
+        columns:
+          - name: data_source
+          - name: database_name
+          - name: effective_date
+          - name: ppdm_guid
+          - name: remark
+          - name: user_name
+
+      - name: l_ppdm_exception
+        description: PPDM Lite table l_ppdm_exception
+        columns:
+          - name: exception_id
+          - name: data_source
+          - name: error_message
+          - name: error_no
+          - name: exception_column_name
+          - name: exception_date
+          - name: exception_table_name
+          - name: exception_type
+          - name: plsql_name
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_ppdm_origin
+        description: PPDM Lite table l_ppdm_origin
+        columns:
+          - name: source_table_name
+          - name: source_ppdm_guid
+          - name: target_table_name
+          - name: target_ppdm_guid
+          - name: data_source
+          - name: business_rule
+          - name: ppdm_guid
+          - name: remark
+          - name: source_column_name
+          - name: target_column_name
+
+      - name: l_ppdm_table
+        description: PPDM Lite table l_ppdm_table
+        columns:
+          - name: table_name
+          - name: data_source
+          - name: ppdm_guid
+          - name: primary_key_name
+          - name: remark
+          - name: table_comment
+
+      - name: l_project
+        description: PPDM Lite table l_project
+        columns:
+          - name: project_id
+          - name: complete_date
+          - name: data_source
+          - name: ppdm_guid
+          - name: project_name
+          - name: project_type
+          - name: remark
+          - name: start_date
+          - name: status
+
+      - name: l_project_alias
+        description: PPDM Lite table l_project_alias
+        columns:
+          - name: project_id
+          - name: alias_id
+          - name: alias_name
+          - name: alias_type
+          - name: data_source
+          - name: owner_ba_id
+          - name: ppdm_guid
+          - name: preferred_ind
+          - name: remark
+
+      - name: l_project_component
+        description: PPDM Lite table l_project_component
+        columns:
+          - name: project_id
+          - name: area_id
+          - name: area_type
+          - name: ba_id
+          - name: component_type
+          - name: contract_id
+          - name: data_source
+          - name: facility_id
+          - name: facility_type
+          - name: field_id
+          - name: jurisdiction
+          - name: land_right_id
+          - name: land_right_type
+          - name: land_sale_number
+          - name: license_id
+          - name: license_table
+          - name: pden_id
+          - name: pden_source
+          - name: pden_type
+          - name: pool_id
+          - name: ppdm_guid
+          - name: resent_id
+          - name: reserve_class_id
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: strat_name_set_id
+          - name: support_facility_id
+          - name: support_facility_type
+          - name: uwi
+
+      - name: l_resent_class
+        description: PPDM Lite table l_resent_class
+        columns:
+          - name: resent_id
+          - name: reserve_class_id
+          - name: confidence_factor
+          - name: data_source
+          - name: effective_date
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_resent_component
+        description: PPDM Lite table l_resent_component
+        columns:
+          - name: resent_id
+          - name: component_id
+          - name: area_id
+          - name: area_type
+          - name: business_associate
+          - name: contract_id
+          - name: contribution_percent
+          - name: data_source
+          - name: facility_id
+          - name: facility_type
+          - name: field_id
+          - name: land_right_id
+          - name: land_right_type
+          - name: pden_id
+          - name: pden_source
+          - name: pden_type
+          - name: pool_id
+          - name: ppdm_guid
+          - name: product_type
+          - name: project_id
+          - name: remark
+          - name: strat_name_set_id
+          - name: strat_unit_id
+          - name: uwi
+
+      - name: l_resent_xref
+        description: PPDM Lite table l_resent_xref
+        columns:
+          - name: resent_id
+          - name: resent_id2
+          - name: xref_obs_no
+          - name: data_source
+          - name: ppdm_guid
+          - name: remark
+          - name: xref_type
+
+      - name: l_reserve_entity
+        description: PPDM Lite table l_reserve_entity
+        columns:
+          - name: resent_id
+          - name: created_by_ba_id
+          - name: data_source
+          - name: group_type
+          - name: ppdm_guid
+          - name: primary_product_type
+          - name: remark
+          - name: update_schedule
+
+      - name: l_rm_info_item_content
+        description: PPDM Lite table l_rm_info_item_content
+        columns:
+          - name: information_item_id
+          - name: info_item_type
+          - name: content_obs_no
+          - name: application_id
+          - name: business_associate
+          - name: contract_id
+          - name: data_source
+          - name: facility_id
+          - name: facility_type
+          - name: field_id
+          - name: jurisdiction
+          - name: land_right_id
+          - name: land_right_type
+          - name: land_sale_number
+          - name: land_sale_offering_id
+          - name: license_id
+          - name: license_table
+          - name: pden_id
+          - name: pden_source
+          - name: pden_type
+          - name: pool_id
+          - name: ppdm_guid
+          - name: remark
+          - name: resent_id
+          - name: reserve_class_id
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: strat_name_set_id
+          - name: strat_unit_id
+          - name: support_facility_id
+          - name: support_facility_type
+          - name: uwi
+
+      - name: l_rm_info_item_desc
+        description: PPDM Lite table l_rm_info_item_desc
+        columns:
+          - name: information_item_id
+          - name: info_item_type
+          - name: description_id
+          - name: data_source
+          - name: description
+          - name: description_date
+          - name: description_type
+          - name: desc_value
+          - name: desc_value_uom
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_rm_information_item
+        description: PPDM Lite table l_rm_information_item
+        columns:
+          - name: information_item_id
+          - name: info_item_type
+          - name: catalogue_date
+          - name: catalogue_name
+          - name: data_source
+          - name: information_quality
+          - name: item_category
+          - name: item_sub_category
+          - name: media_type
+          - name: origin_date
+          - name: physical_item_id
+          - name: physical_item_status
+          - name: ppdm_guid
+          - name: reference_num
+          - name: remark
+          - name: retention_period
+          - name: store_id
+          - name: title
+
+      - name: l_seis_alias
+        description: PPDM Lite table l_seis_alias
+        columns:
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: seis_alias_id
+          - name: alias_owner
+          - name: data_source
+          - name: ppdm_guid
+          - name: preferred_ind
+          - name: remark
+          - name: seis_set_alias
+
+      - name: l_seis_point
+        description: PPDM Lite table l_seis_point
+        columns:
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: seis_point_id
+          - name: data_source
+          - name: datum_elev
+          - name: datum_elev_uom
+          - name: elev
+          - name: elev_ouom
+          - name: end_bend_ind
+          - name: measured_depth
+          - name: measured_depth_uom
+          - name: ppdm_guid
+          - name: reference_datum
+          - name: remark
+          - name: seis_point_label
+          - name: seis_point_lat
+          - name: seis_point_long
+          - name: seis_point_no
+          - name: seis_station_type
+          - name: spatial_seq_no
+
+      - name: l_seis_record
+        description: PPDM Lite table l_seis_record
+        columns:
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: record_id
+          - name: data_source
+          - name: field_file_number
+          - name: information_item_id
+          - name: info_item_type
+          - name: patch_used_ind
+          - name: ppdm_guid
+          - name: recording_remarks
+          - name: record_number
+          - name: record_quality
+          - name: record_type
+          - name: remark
+          - name: seis_shot_point_id
+
+      - name: l_seis_set
+        description: PPDM Lite table l_seis_set
+        columns:
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: acqtn_survey_name
+          - name: completed_date
+          - name: coord_acquisition_id
+          - name: country
+          - name: current_seis_status
+          - name: data_source
+          - name: finance_id
+          - name: first_seis_point_id
+          - name: first_seis_set_id
+          - name: first_seis_set_type
+          - name: jurisdiction
+          - name: last_seis_point_id
+          - name: last_seis_set_id
+          - name: last_seis_set_type
+          - name: line_length
+          - name: line_length_uom
+          - name: line_name
+          - name: ppdm_guid
+          - name: province_state
+          - name: refraction_reflection
+          - name: reshoot_of_seis_set_type
+          - name: reshoot_of_set_id
+          - name: seis_3d_type
+          - name: seis_dimension
+          - name: seis_spectrum_type
+          - name: seis_station_type
+          - name: shot_for
+          - name: start_date
+          - name: status_type
+          - name: test_experimental
+
+      - name: l_sf_alias
+        description: PPDM Lite table l_sf_alias
+        columns:
+          - name: support_facility_id
+          - name: sf_type
+          - name: alias_id
+          - name: alias
+          - name: alias_type
+          - name: data_source
+          - name: owner_ba_id
+          - name: ppdm_guid
+          - name: preferred_ind
+          - name: remark
+
+      - name: l_sf_component
+        description: PPDM Lite table l_sf_component
+        columns:
+          - name: support_facility_id
+          - name: sf_type
+          - name: use_id
+          - name: area_id
+          - name: area_type
+          - name: business_associate
+          - name: contract_id
+          - name: data_source
+          - name: facility_id
+          - name: facility_type
+          - name: field_id
+          - name: finance_id
+          - name: information_item_id
+          - name: info_item_type
+          - name: interest_set_id
+          - name: land_right_id
+          - name: land_right_type
+          - name: land_sale_jurisdiction
+          - name: land_sale_number
+          - name: pden_id
+          - name: pden_source
+          - name: pden_type
+          - name: pool_id
+          - name: ppdm_guid
+          - name: project_id
+          - name: remark
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: uwi
+
+      - name: l_sf_description
+        description: PPDM Lite table l_sf_description
+        columns:
+          - name: support_facility_id
+          - name: sf_type
+          - name: description_obs_no
+          - name: data_source
+          - name: description
+          - name: desc_type
+          - name: desc_value
+          - name: desc_value_code
+          - name: desc_value_uom
+          - name: ppdm_guid
+
+      - name: l_sf_support_facility
+        description: PPDM Lite table l_sf_support_facility
+        columns:
+          - name: support_facility_id
+          - name: sf_type
+          - name: data_source
+          - name: facility_status
+          - name: ppdm_guid
+          - name: remark
+          - name: status_type
+
+      - name: l_sf_xref
+        description: PPDM Lite table l_sf_xref
+        columns:
+          - name: support_facility_id
+          - name: sf_type
+          - name: support_facility_id2
+          - name: sf_type2
+          - name: data_source
+          - name: ppdm_guid
+          - name: remark
+          - name: xref_type
+
+      - name: l_sp_boundary
+        description: PPDM Lite table l_sp_boundary
+        columns:
+          - name: polygon_id
+          - name: point_seq_no
+          - name: data_source
+          - name: latitude
+          - name: longitude
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_sp_component
+        description: PPDM Lite table l_sp_component
+        columns:
+          - name: spatial_description_id
+          - name: spatial_obs_no
+          - name: component_id
+          - name: application_id
+          - name: area_id
+          - name: area_type
+          - name: data_source
+          - name: facility_id
+          - name: facility_type
+          - name: field_id
+          - name: interest_set_id
+          - name: jurisdiction
+          - name: land_right_id
+          - name: land_right_type
+          - name: land_sale_number
+          - name: land_sale_offering_id
+          - name: license_id
+          - name: license_table
+          - name: pden_id
+          - name: pden_source
+          - name: pden_type
+          - name: pool_id
+          - name: ppdm_guid
+          - name: remark
+          - name: resent_id
+          - name: seis_set_id
+          - name: seis_set_type
+          - name: support_facility_id
+          - name: support_facility_type
+          - name: uwi
+
+      - name: l_sp_geometry
+        description: PPDM Lite table l_sp_geometry
+        columns:
+          - name: spatial_obs_no
+          - name: spatial_description_id
+          - name: geometry_format
+          - name: geometry_id
+          - name: geometry_obs_no
+          - name: data_source
+          - name: geometry_date
+          - name: geometry_source
+          - name: geometry_type
+          - name: object_source
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_sp_line
+        description: PPDM Lite table l_sp_line
+        columns:
+          - name: line_id
+          - name: data_source
+          - name: ppdm_guid
+          - name: remark
+          - name: spatial_description_id
+          - name: spatial_obs_no
+
+      - name: l_sp_line_point
+        description: PPDM Lite table l_sp_line_point
+        columns:
+          - name: line_id
+          - name: point_seq_no
+          - name: bend_ind
+          - name: data_source
+          - name: depth
+          - name: elevation
+          - name: first_point_ind
+          - name: last_point_ind
+          - name: latitude
+          - name: longitude
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_sp_mineral_zone
+        description: PPDM Lite table l_sp_mineral_zone
+        columns:
+          - name: spatial_description_id
+          - name: spatial_obs_no
+          - name: mineral_zone_id
+          - name: data_source
+          - name: deep_right_reversion_ind
+          - name: ppdm_guid
+          - name: remark
+          - name: zone_definition_id
+
+      - name: l_sp_point
+        description: PPDM Lite table l_sp_point
+        columns:
+          - name: point_id
+          - name: data_source
+          - name: latitude
+          - name: longitude
+          - name: ppdm_guid
+          - name: remark
+          - name: spatial_description_id
+          - name: spatial_obs_no
+
+      - name: l_sp_polygon
+        description: PPDM Lite table l_sp_polygon
+        columns:
+          - name: polygon_id
+          - name: boundary_direction
+          - name: contained_by_polygon_id
+          - name: data_source
+          - name: exclusion_ind
+          - name: polygon_set_id
+          - name: ppdm_guid
+          - name: remark
+          - name: spatial_description_id
+          - name: spatial_obs_no
+
+      - name: l_sp_zone_substance
+        description: PPDM Lite table l_sp_zone_substance
+        columns:
+          - name: spatial_description_id
+          - name: spatial_obs_no
+          - name: mineral_zone_id
+          - name: substance
+          - name: base_md
+          - name: base_strat_unit_id
+          - name: data_source
+          - name: excluded_ind
+          - name: included_ind
+          - name: ppdm_guid
+          - name: remark
+          - name: strat_name_set_id
+          - name: top_md
+          - name: top_strat_unit_id
+
+      - name: l_spatial_description
+        description: PPDM Lite table l_spatial_description
+        columns:
+          - name: spatial_description_id
+          - name: spatial_obs_no
+          - name: coord_system_id
+          - name: data_source
+          - name: line_ind
+          - name: max_latitude
+          - name: max_longitude
+          - name: min_latitude
+          - name: min_longitude
+          - name: point_ind
+          - name: polygon_ind
+          - name: ppdm_guid
+          - name: remark
+          - name: spatial_desc_text_ind
+          - name: spatial_desc_type
+
+      - name: l_strat_name_set
+        description: PPDM Lite table l_strat_name_set
+        columns:
+          - name: strat_name_set_id
+          - name: business_associate
+          - name: data_source
+          - name: effective_date
+          - name: ppdm_guid
+          - name: preferred_ind
+          - name: remark
+
+      - name: l_strat_unit
+        description: PPDM Lite table l_strat_unit
+        columns:
+          - name: strat_name_set_id
+          - name: strat_unit_id
+          - name: average_age
+          - name: business_associate
+          - name: data_source
+          - name: effective_date
+          - name: fault_type
+          - name: form_code
+          - name: long_name
+          - name: max_age
+          - name: min_age
+          - name: ordinal_age_code
+          - name: ppdm_guid
+          - name: remark
+
+      - name: l_strat_well_section
+        description: PPDM Lite table l_strat_well_section
+        columns:
+          - name: uwi
+          - name: strat_name_set_id
+          - name: strat_unit_id
+          - name: interp_id
+          - name: data_source
+          - name: interpreter
+          - name: ordinal_seq_no
+          - name: overturned_ind
+          - name: pick_date
+          - name: pick_tvd
+          - name: ppdm_guid
+          - name: remark
+          - name: strat_unit_age
+
+      - name: l_well
+        description: PPDM Lite table l_well
+        columns:
+          - name: uwi
+          - name: alt_well_name
+          - name: aof_count
+          - name: assigned_field
+          - name: basin
+          - name: bottom_hole_latitude
+          - name: bottom_hole_loc_quality
+          - name: bottom_hole_longitude
+          - name: completion_date
+          - name: comp_count
+          - name: confidential_date
+          - name: core_count
+          - name: country
+          - name: current_class
+          - name: current_status
+          - name: current_status_date
+          - name: data_source
+          - name: datum
+          - name: dir_srvy_count
+          - name: drill_rig_num
+          - name: drill_td
+          - name: dst_count
+          - name: final_drill_date
+          - name: final_td
+          - name: ground_elev
+          - name: ipts_count
+          - name: kb_elev
+          - name: last_injection_date
+          - name: last_production_date
+          - name: lease
+          - name: licensee
+          - name: license_date
+          - name: license_number
+          - name: log_count
+          - name: max_tvd
+          - name: oldest_strat_age
+          - name: oldest_strat_unit_id
+          - name: on_injection_date
+          - name: on_production_date
+          - name: operator
+          - name: operator_abbreviation
+          - name: parent_relationship_type
+          - name: parent_uwi
+          - name: plot_symbol
+          - name: pool
+          - name: ppdm_guid
+          - name: producing_horizon
+          - name: producing_status
+          - name: producing_strat_age
+          - name: profile_type
+          - name: prospect_name
+          - name: province_state
+          - name: region
+          - name: remark
+          - name: rig_release_date
+          - name: situation
+          - name: spud_date
+          - name: status_type
+          - name: surface_latitude
+          - name: surface_loc_quality
+          - name: surface_longitude
+          - name: surface_uwi
+          - name: survey_grid
+          - name: su_count
+          - name: td_formation
+          - name: td_strat_age
+          - name: td_strat_name_set_id
+          - name: td_strat_unit_id
+          - name: vel_srvy_count
+          - name: water_depth
+          - name: water_depth_datum
+          - name: well_name
+          - name: well_number
+          - name: well_numeric_id
+          - name: well_type
+          - name: row_changed_date
+
+      - name: l_well_alias
+        description: PPDM Lite table l_well_alias
+        columns:
+          - name: uwi
+          - name: source
+          - name: well_alias_id
+          - name: alias_type
+          - name: data_source
+          - name: ppdm_guid
+          - name: preferred_ind
+          - name: remark
+          - name: well_alias
+
+      - name: l_well_service
+        description: PPDM Lite table l_well_service
+        columns:
+          - name: uwi
+          - name: source
+          - name: service_table
+          - name: service_type
+          - name: service_number
+          - name: base_md
+          - name: base_strat_unit_age
+          - name: base_strat_unit_id
+          - name: data_source
+          - name: ppdm_guid
+          - name: primary_strat_unit_age
+          - name: primary_strat_unit_id
+          - name: remark
+          - name: service_date
+          - name: strat_name_set_id
+          - name: top_md
+          - name: top_strat_unit_age
+          - name: top_strat_unit_id

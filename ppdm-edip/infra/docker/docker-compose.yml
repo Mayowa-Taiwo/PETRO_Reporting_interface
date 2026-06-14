@@ -1,0 +1,85 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    environment:
+      POSTGRES_USER: edip
+      POSTGRES_PASSWORD: edip_secret
+      POSTGRES_DB: edip
+    ports:
+      - "5432:5432"
+    volumes:
+      - edip_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U edip -d edip"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  init:
+    build:
+      context: ../..
+      dockerfile: apps/api/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+asyncpg://edip:edip_secret@db:5432/edip
+      # If your init uses sync SQLAlchemy instead, use a sync URL:
+      DATABASE_URL_SYNC: postgresql+psycopg2://edip:edip_secret@db:5432/edip
+      REDIS_URL: redis://redis:6379/0
+      RUN_MIGRATIONS: "1"
+      RUN_SEEDS: "1"
+      RUN_DBT: "1"
+      # DDL path used by generator inside container (copy into repo at scripts/ddl/...)
+      DDL_PATH: scripts/ddl/ppdm_lite11_postgres_ddl.sql
+    command: ["bash", "-lc", "scripts/init/entrypoint.sh"]
+    restart: "no"
+
+  api:
+    build:
+      context: ../..
+      dockerfile: apps/api/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+asyncpg://edip:edip_secret@db:5432/edip
+      REDIS_URL: redis://redis:6379/0
+      SECRET_KEY: change-me-in-production
+    ports:
+      - "8007:8000"
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build:
+      context: ../..
+      dockerfile: apps/web/Dockerfile
+    environment:
+      # Browser on host calls API via published port 8007
+      NEXT_PUBLIC_API_URL: http://localhost:8007
+    ports:
+      - "3007:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  edip_pgdata:

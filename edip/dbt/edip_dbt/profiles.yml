@@ -1,0 +1,12 @@
+edip_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: db
+      user: edip
+      password: edip_secret
+      port: 5432
+      dbname: edip
+      schema: "{{ env_var('DBT_TARGET_SCHEMA', 'marts_shared') }}"
+      threads: 4

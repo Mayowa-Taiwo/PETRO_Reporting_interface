@@ -1,0 +1,27 @@
+-- Staging for ppdm_lite.l_resent_component (generated)
+select
+    resent_id,
+    component_id,
+    area_id,
+    area_type,
+    business_associate,
+    contract_id,
+    contribution_percent,
+    data_source,
+    facility_id,
+    facility_type,
+    field_id,
+    land_right_id,
+    land_right_type,
+    pden_id,
+    pden_source,
+    pden_type,
+    pool_id,
+    ppdm_guid,
+    product_type,
+    project_id,
+    remark,
+    strat_name_set_id,
+    strat_unit_id,
+    uwi
+from {{ source('ppdm_lite', 'l_resent_component') }}

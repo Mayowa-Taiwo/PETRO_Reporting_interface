@@ -1,0 +1,158 @@
+# PETRO Reporting Interface — Portal is the only user-facing frontend (http://localhost:3003).
+# EDIP API and Governance/TRD API (ppdm-edip backend) run internally; portal proxies /api/edip and /api/governance.
+services:
+  portal:
+    build:
+      context: ./portal
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3000"
+    environment:
+      EDIP_API_PROXY_TARGET: http://edip_api:8000
+      GOVERNANCE_API_PROXY_TARGET: http://ppdm_api:8000
+    depends_on:
+      edip_api:
+        condition: service_healthy
+      ppdm_api:
+        condition: service_healthy
+
+  # ---- EDIP backend ----
+  edip_db:
+    image: postgis/postgis:15-3.3
+    environment:
+      POSTGRES_USER: edip
+      POSTGRES_PASSWORD: edip_secret
+      POSTGRES_DB: edip
+    volumes:
+      - edip_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U edip -d edip"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+  edip_redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+
+  edip_init:
+    build:
+      context: ./edip
+      dockerfile: apps/api/Dockerfile
+    working_dir: /app
+    environment:
+      PGHOST: edip_db
+      DATABASE_URL: postgresql+asyncpg://edip:edip_secret@edip_db:5432/edip
+      DATABASE_URL_SYNC: postgresql://edip:edip_secret@edip_db:5432/edip
+      REDIS_URL: redis://edip_redis:6379/0
+      RUN_GENERATOR: "0"
+      RUN_MIGRATIONS: "1"
+      RUN_SEEDS: "1"
+      RUN_DBT: "0"
+      DDL_PATH: scripts/ddl/ppdm_lite11_postgres_ddl.sql
+      DBT_TARGET_SCHEMA: marts_shared
+    command: ["bash", "-lc", "scripts/init/entrypoint.sh"]
+    restart: "no"
+    depends_on:
+      edip_db:
+        condition: service_healthy
+      edip_redis:
+        condition: service_healthy
+
+  edip_api:
+    build:
+      context: ./edip
+      dockerfile: apps/api/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+asyncpg://edip:edip_secret@edip_db:5432/edip
+      REDIS_URL: redis://edip_redis:6379/0
+      SECRET_KEY: change-me-in-production
+    expose:
+      - "8000"
+    depends_on:
+      edip_init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+
+  # ---- Governance / TRD backend (ppdm-edip API) ----
+  ppdm_db:
+    image: postgis/postgis:15-3.3
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ppdm_edip
+    volumes:
+      - ppdm_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ppdm_edip"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+  ppdm_redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+
+  ppdm_api:
+    build:
+      context: ./ppdm-edip
+      dockerfile: apps/api/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@ppdm_db:5432/ppdm_edip
+      REDIS_URL: redis://ppdm_redis:6379/0
+      SECRET_KEY: change-me-in-production
+    expose:
+      - "8000"
+    depends_on:
+      ppdm_db:
+        condition: service_healthy
+      ppdm_redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+
+  # Optional: standalone EDIP / ppdm-edip web UIs for isolated development (not published to host).
+  edip_web:
+    profiles: ["dev-legacy-ui"]
+    build:
+      context: ./edip
+      dockerfile: apps/web/Dockerfile
+    environment:
+      EDIP_API_PROXY_TARGET: http://edip_api:8000
+    expose:
+      - "3000"
+    depends_on:
+      edip_api:
+        condition: service_healthy
+
+  ppdm_web:
+    profiles: ["dev-legacy-ui"]
+    build:
+      context: ./ppdm-edip
+      dockerfile: apps/web/Dockerfile
+    environment:
+      NEXT_PUBLIC_API_URL: http://ppdm_api:8000
+    expose:
+      - "3000"
+    depends_on:
+      ppdm_api:
+        condition: service_healthy
+
+volumes:
+  edip_pgdata: {}
+  ppdm_pgdata: {}

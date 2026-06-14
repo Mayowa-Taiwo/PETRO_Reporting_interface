@@ -1,0 +1,25 @@
+-- Staging for ppdm_lite.l_land_right (generated)
+select
+    land_right_id,
+    land_right_type,
+    cost_center_num,
+    country,
+    data_source,
+    expiry_date,
+    granted_right_type,
+    jurisdiction,
+    land_acqtn_method,
+    land_property_type,
+    land_right_category,
+    land_sale_number,
+    land_sale_offering_id,
+    lessor_num,
+    lessor_type,
+    occupant_name,
+    ppdm_guid,
+    primary_term,
+    primary_term_uom,
+    province_state,
+    remark,
+    rofr_ind
+from {{ source('ppdm_lite', 'l_land_right') }}

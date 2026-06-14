@@ -1,0 +1,55 @@
+name: edip_dbt
+version: "1.0.0"
+config-version: 2
+profile: edip_dbt
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  tenant_id_placeholder: "00000000-0000-0000-0000-000000000000"
+
+models:
+  edip_dbt:
+    staging:
+      ppdm_lite:
+        +schema: staging
+        +materialized: view
+    marts_shared:
+      +schema: marts_shared
+      +materialized: table
+    marts_production:
+      +schema: marts_production
+      +materialized: table
+    marts_asset:
+      +schema: marts_asset
+      +materialized: table
+    marts_reserves:
+      +schema: marts_reserves
+      +materialized: table
+    marts_contract:
+      +schema: marts_contract
+      +materialized: table
+    marts_finance:
+      +schema: marts_finance
+      +materialized: table
+    marts_facility:
+      +schema: marts_facility
+      +materialized: table
+    marts_spatial:
+      +schema: marts_spatial
+      +materialized: table
+    marts_governance:
+      +schema: marts_governance
+      +materialized: table
+    marts_jv:
+      +schema: marts_jv
+      +materialized: table
+    marts_regulatory:
+      +schema: marts_regulatory
+      +materialized: table
