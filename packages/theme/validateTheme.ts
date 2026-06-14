@@ -19,8 +19,10 @@ export function validateResolvedTheme(theme: ResolvedTheme): ThemeValidationResu
   if (!theme.layers.tanna?.table?.headerBg) errors.push("Tanna layer missing table tokens.");
   if (!theme.layers.tanna?.chart?.seriesPrimary) errors.push("Tanna layer missing chart tokens.");
 
-  if (!theme.layers.family?.id) errors.push("Theme family layer missing id.");
-  if (theme.layers.family.id !== theme.themeFamily) {
+  const familyId = theme.layers.family?.id;
+  if (!familyId) {
+    errors.push("Theme family layer missing id.");
+  } else if (familyId !== theme.themeFamily) {
     errors.push("Theme family layer id does not match resolved themeFamily.");
   }
 
@@ -32,6 +34,12 @@ export function validateResolvedTheme(theme: ResolvedTheme): ThemeValidationResu
   }
   if (!theme.cssVariables["--tanna-theme-family"]) {
     errors.push("Resolved CSS variables missing theme family marker.");
+  }
+  if (!theme.cssVariables["--tanna-platform-bg"]) {
+    errors.push("Resolved CSS variables missing Tailwind platform background alias.");
+  }
+  if (!theme.cssVariables["--tanna-workspace-bg"]) {
+    errors.push("Resolved CSS variables missing Tailwind workspace background alias.");
   }
 
   return { ok: errors.length === 0, errors };

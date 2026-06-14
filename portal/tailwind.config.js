@@ -9,14 +9,14 @@ module.exports = {
     extend: {
       colors: {
         tanna: {
-          platform: "var(--tanna-shell-platform-bg)",
-          "platform-fg": "var(--tanna-shell-platform-text)",
-          workspace: "var(--tanna-shell-workspace-bg)",
-          "workspace-fg": "var(--tanna-shell-workspace-text)",
-          header: "var(--tanna-shell-header)",
-          "header-border": "var(--tanna-shell-header-border)",
-          panel: "var(--tanna-shell-panel-bg)",
-          "panel-border": "var(--tanna-shell-panel-border)",
+          platform: "var(--tanna-platform-bg)",
+          "platform-fg": "var(--tanna-platform-fg)",
+          workspace: "var(--tanna-workspace-bg)",
+          "workspace-fg": "var(--tanna-workspace-fg)",
+          header: "var(--tanna-header)",
+          "header-border": "var(--tanna-header-border)",
+          panel: "var(--tanna-panel-bg)",
+          "panel-border": "var(--tanna-panel-border)",
           accent: "var(--tanna-accent-primary)",
           "accent-hover": "var(--tanna-accent-primary-hover)",
           "accent-fg": "var(--tanna-accent-primary-fg)",

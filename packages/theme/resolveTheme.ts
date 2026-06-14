@@ -48,6 +48,16 @@ function toCssVariables(
     "--tanna-shell-panel-bg": tanna.shell.panelBg,
     "--tanna-shell-panel-border": tanna.shell.panelBorder,
 
+    /* Tailwind-facing aliases — match bg-tanna-platform, bg-tanna-workspace, etc. */
+    "--tanna-platform-bg": tanna.shell.platformBg,
+    "--tanna-platform-fg": tanna.shell.platformText,
+    "--tanna-workspace-bg": tanna.shell.workspaceBg,
+    "--tanna-workspace-fg": tanna.shell.workspaceText,
+    "--tanna-header": tanna.shell.shellHeader,
+    "--tanna-header-border": tanna.shell.shellHeaderBorder,
+    "--tanna-panel-bg": tanna.shell.panelBg,
+    "--tanna-panel-border": tanna.shell.panelBorder,
+
     "--tanna-layout-module-max-width": tanna.layout.moduleMaxWidth,
     "--tanna-layout-module-padding": tanna.layout.modulePadding,
     "--tanna-layout-platform-max-width": tanna.layout.platformMaxWidth,

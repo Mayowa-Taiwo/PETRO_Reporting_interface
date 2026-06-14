@@ -18,6 +18,15 @@
   --tanna-shell-panel-bg: #ffffff;
   --tanna-shell-panel-border: #e2e8f0;
 
+  --tanna-platform-bg: var(--tanna-shell-platform-bg);
+  --tanna-platform-fg: var(--tanna-shell-platform-text);
+  --tanna-workspace-bg: var(--tanna-shell-workspace-bg);
+  --tanna-workspace-fg: var(--tanna-shell-workspace-text);
+  --tanna-header: var(--tanna-shell-header);
+  --tanna-header-border: var(--tanna-shell-header-border);
+  --tanna-panel-bg: var(--tanna-shell-panel-bg);
+  --tanna-panel-border: var(--tanna-shell-panel-border);
+
   --tanna-nav-breadcrumb: #94a3b8;
   --tanna-nav-breadcrumb-hover: #ffffff;
   --tanna-nav-separator: #475569;
@@ -36,6 +45,6 @@
 
   --tanna-chart-series-primary: #0d9488;
 
-  --tanna-product-slug: petro-reporting;
+  --tanna-product-slug: petroleum-intelligence;
   --tanna-theme-family: ldv;
 }
